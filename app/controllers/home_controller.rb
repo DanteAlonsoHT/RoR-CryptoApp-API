@@ -59,14 +59,14 @@ class HomeController < ApplicationController
   # 'rest-client' & 'json'.
 
   def read_data_from_api
-    # url_crypto_values = 'https://data.messari.io/api/v1/assets?fields=id,slug,symbol,metrics/market_data/price_usd'
+    url_crypto_values = 'https://data.messari.io/api/v1/assets?fields=id,slug,symbol,metrics/market_data/price_usd'
 
     ##
     # Clase RestClient usa método get y el único parámetro es una URL
     #
     # @param { String } URL -> Es la URL usada por el método HTTP
 
-    # response = RestClient.get url_crypto_values
+    response = RestClient.get url_crypto_values
 
     ##
     # Clase JSON usa método parse y el único parámetro es una respuesta HTTP
@@ -74,11 +74,11 @@ class HomeController < ApplicationController
     #
     # @param { String } respuestHTTP -> Se le pasará traducirá de JSON a Hash.
 
-    # result = JSON.parse response.to_s
+    result = JSON.parse response.to_s
 
-    bitcoin_price = 30_000 # result['data'][0]['metrics']['market_data']['price_usd'].round(2)
-    ethereum_price = 2000 # result['data'][1]['metrics']['market_data']['price_usd'].round(2)
-    cardano_price = 100 # result['data'][4]['metrics']['market_data']['price_usd'].round(2)
+    bitcoin_price = result['data'][0]['metrics']['market_data']['price_usd'].round(2)
+    ethereum_price = result['data'][1]['metrics']['market_data']['price_usd'].round(2)
+    cardano_price = result['data'][4]['metrics']['market_data']['price_usd'].round(2)
 
     { bitcoin_price: bitcoin_price, ethereum_price: ethereum_price, cardano_price: cardano_price }
   end
