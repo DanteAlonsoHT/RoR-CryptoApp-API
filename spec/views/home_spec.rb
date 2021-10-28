@@ -9,8 +9,16 @@ RSpec.describe 'home/index', type: :system do
       expect(page).to have_button 'Calcular rendimientos'
     end
 
-    it 'Analizando botón para Calcular rendimientos totales existente' do
-      expect(page).to have_button 'Calcular rendimientos totales'
+    it 'Analizando botón para exportar a archivo CSV' do
+      expect(page).to have_button 'Exportar CSV'
+    end
+
+    it 'Analizando botón para exportar a archivo XLS' do
+      expect(page).to have_button 'Exportar EXCEL'
+    end
+
+    it 'Analizando botón para exportar a archivo JSON' do
+      expect(page).to have_button 'Exportar JSON'
     end
   end
 end
