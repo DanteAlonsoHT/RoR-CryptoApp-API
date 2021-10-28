@@ -43,7 +43,7 @@ Sigue los siguientes pasos para poder tener una copia de este proyecto de manera
 - Una vez instalado Ruby, clona este repositorio utilizando el siguiente comando desde tu terminal ubicado desde desees conservar el repositorio:
 
 ```
-git clone https://github.com/DanteAlonsoHT/group_our_transactions.git
+git clone https://github.com/DanteAlonsoHT/RoR-CryptoApp-API.git
 ```
 
 ### Run App
