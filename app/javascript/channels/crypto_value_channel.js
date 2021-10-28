@@ -14,7 +14,10 @@ const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-/*
+// Función 'getPricesFromAPI' obtiene los valores de la API
+//
+// @return { Object } Datos provenientes de la API
+
 const getPricesFromAPI = async () => {
   const bitcoinPrice = document.getElementById("bitcoin-price");
   const ethereumPrice = document.getElementById("ethereum-price");
@@ -23,16 +26,21 @@ const getPricesFromAPI = async () => {
     .then(response => response.json())
     .catch(error => console.error("Error: Data was not Found", error))
     .then(data => {
-        bitcoinPrice.innerText = data['data'][0]['metrics']['market_data']['price_usd'].toFixed(2);
-        ethereumPrice.innerText = data['data'][1]['metrics']['market_data']['price_usd'].toFixed(2);
-        cardanoPrice.innerText = data['data'][4]['metrics']['market_data']['price_usd'].toFixed(2);
+        const btcPrice = data['data'][0]['metrics']['market_data']['price_usd'].toFixed(2);
+        const ethPrice = data['data'][1]['metrics']['market_data']['price_usd'].toFixed(2);
+        const adaPrice = data['data'][4]['metrics']['market_data']['price_usd'].toFixed(2)
+
+        bitcoinPrice.innerText = btcPrice;
+        ethereumPrice.innerText = ethPrice;
+        cardanoPrice.innerText = adaPrice;
+
+        document.getElementById("btc_price_export").value = btcPrice;
+        document.getElementById("eth_price_export").value = ethPrice;
+        document.getElementById("ada_price_export").value = adaPrice;;
     });
 }
-*/
 
-// Función 'getPricesFromAPI' obtiene los valores de la API
-//
-// @return { Object } Datos provenientes de la API
+/* SIMULACIÓN DE DATOS PARA NO GASTAR EL LÍMITE DE PETICIONES A LA API
 
 const getPricesFromAPI = () => {
   const btcPrice = (50500.34 + (Math.random()*1000)).toFixed(2);
@@ -47,6 +55,7 @@ const getPricesFromAPI = () => {
   document.getElementById("eth_price_export").value = ethPrice;
   document.getElementById("ada_price_export").value = adaPrice;
 }
+*/
 
 // Función 'printJSON' llama a la API y espera un delay de manera
 // asíncrona, la función correra mientras se conecta alguien al
@@ -55,7 +64,7 @@ const getPricesFromAPI = () => {
 const printJSON = async (estado) => {
   while(estado){
     getPricesFromAPI();
-    await sleep(5000);
+    await sleep(120000);
   }
 }
 
