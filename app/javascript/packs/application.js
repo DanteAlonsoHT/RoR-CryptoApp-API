@@ -11,10 +11,6 @@ import "channels"
 import 'bootstrap'
 import 'css/styles'
 
-/*calculateBTCYields();
-calculateETHYields();
-calculateADAYields();
-*/
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
