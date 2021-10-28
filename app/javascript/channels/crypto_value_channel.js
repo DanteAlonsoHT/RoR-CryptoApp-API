@@ -19,6 +19,21 @@ const getPricesFromAPI = async () => {
         cardanoPrice.innerText = data['data'][4]['metrics']['market_data']['price_usd'].toFixed(2);
     });
 }
+*/
+
+const getPricesFromAPI = () => {
+  const btcPrice = (50500.34 + (Math.random()*1000)).toFixed(2);
+  const ethPrice = (3500.55 + (Math.random()*200)).toFixed(2);
+  const adaPrice = (1.15 + (Math.random()*.10)).toFixed(2);
+
+  document.getElementById("bitcoin-price").innerText = btcPrice;
+  document.getElementById("ethereum-price").innerText = ethPrice;
+  document.getElementById("cardano-price").innerText = adaPrice;
+
+  document.getElementById("btc_price_export").value = btcPrice;
+  document.getElementById("eth_price_export").value = ethPrice;
+  document.getElementById("ada_price_export").value = adaPrice;
+}
 
 const printJSON = async () => {
   while(true){
@@ -27,12 +42,11 @@ const printJSON = async () => {
   }
 }
 
-printJSON();
-*/
 consumer.subscriptions.create("CryptoValueChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
     console.log("Conectadooo")
+    printJSON();
   },
 
   disconnected() {
