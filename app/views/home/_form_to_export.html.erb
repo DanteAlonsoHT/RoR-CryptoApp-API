@@ -1,3 +1,17 @@
+<!--
+
+Método 'form_tag' recibe una URL de redireccionamiento, usa el método POST.
+
+'hidden_field_tag' poseen el mismo valor individual que la tabla de precios,
+sus valores se van actualizando a la par.
+
+'submit_tag' son los botones para mandar los datos, se usa una URL configurada
+para ir a un específico controlador y acción.
+[BUG]: Una vez presionado un botón, los botones quedan desabilitados hasta
+volver a actualizar/refrescar la página.
+
+-->
+
 <%= form_tag '/home/export' do %>
     <%= hidden_field_tag   :btc_price_export, '50500.55' %>
     <%= hidden_field_tag   :eth_price_export, '3500.55' %>
