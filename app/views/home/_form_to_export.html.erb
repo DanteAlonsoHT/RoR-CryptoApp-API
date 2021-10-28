@@ -3,9 +3,12 @@
     <%= hidden_field_tag   :eth_price_export, '3500.55' %>
     <%= hidden_field_tag   :ada_price_export, '115.55' %>
     <%= submit_tag "Exportar CSV", url: link_to( '/' ,{ :controller => :home,
-    :action => :export }, format: 'csv'), data: { disable_with: 'Descargando...' } %>
+    :action => :export }, format: 'csv'), data: { disable_with: 'Descargando...' },
+    class: "btn btn-danger" %>
     <%= submit_tag "Exportar EXCEL", url: link_to( '/' ,{ :controller => :home,
-    :action => :export }, format: 'xls'), data: { disable_with: 'Descargando...' } %>
+    :action => :export }, format: 'xls'), data: { disable_with: 'Descargando...' },
+    class: "btn btn-success" %>
     <%= submit_tag "Exportar JSON", url: link_to( '/' ,{ :controller => :home,
-    :action => :export }, format: 'json'), data: { disable_with: 'Descargando...' } %>
+    :action => :export }, format: 'json'), data: { disable_with: 'Descargando...' },
+    class: "btn btn-primary" %>
 <% end %>
