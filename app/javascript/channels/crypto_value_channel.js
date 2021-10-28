@@ -1,10 +1,19 @@
+// Se manda a llamar al consumidor que hará la conexión con Action Cable
 import consumer from "./consumer"
 
-consumer.subscriptions.create({ channel: "CryptoValue" })
+/*
+Se crea una suscripción al canal 'CryptoValue'
 
+@params { Object } channel -> nombre en CamelCase del canal
+@return { Function } Suscripción al canal
+*/
+consumer.subscriptions.create({ channel: "CryptoValueChannel" })
+
+// Se crea función para llamar un delay temporal entre cada petición HTTP
 const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
+
 /*
 const getPricesFromAPI = async () => {
   const bitcoinPrice = document.getElementById("bitcoin-price");
@@ -21,6 +30,10 @@ const getPricesFromAPI = async () => {
 }
 */
 
+// Función 'getPricesFromAPI' obtiene los valores de la API
+//
+// @return { Object } Datos provenientes de la API
+
 const getPricesFromAPI = () => {
   const btcPrice = (50500.34 + (Math.random()*1000)).toFixed(2);
   const ethPrice = (3500.55 + (Math.random()*200)).toFixed(2);
@@ -35,23 +48,36 @@ const getPricesFromAPI = () => {
   document.getElementById("ada_price_export").value = adaPrice;
 }
 
-const printJSON = async () => {
-  while(true){
+// Función 'printJSON' llama a la API y espera un delay de manera
+// asíncrona, la función correra mientras se conecta alguien al
+// canal 'CryptoValue'
+
+const printJSON = async (estado) => {
+  while(estado){
     getPricesFromAPI();
     await sleep(5000);
   }
 }
 
+let conexion = 0;
+
 consumer.subscriptions.create("CryptoValueChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
-    console.log("Conectadooo")
-    printJSON();
+    //console.log("Conectado")
+    conexion += 1;
+    if (conexion == 1) {
+      printJSON(true);
+    }
   },
 
   disconnected() {
     // Called when the subscription has been terminated by the server
-    console.log("Desconectado")
+    //console.log("Desconectado")
+    conexion -= 1;
+    if (conexion == 0){
+      printJSON(false);
+    }
   },
 
   received(data) {
