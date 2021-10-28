@@ -6,7 +6,10 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+import './buttons/calculate_yields'
 import "channels"
+import 'bootstrap'
+import 'css/styles'
 
 Rails.start()
 Turbolinks.start()

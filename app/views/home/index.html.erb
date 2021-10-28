@@ -1,0 +1,90 @@
+<h1>¡Invierte YA!</h1>
+
+<h2 class="py-3">Calcula tus ganancias de un año si inviertes al día de hoy</h2>
+
+<p>Llena los siguientes campos para calcular tus ganancias inviertiendo en
+   criptomenedas</p>
+
+<form class="d-flex flex-wrap justify-content-evenly text-center my-5">
+    <div>
+        <img src="https://www.gamestorrents.fm/wp-content/uploads/2017/11/bitcoin-logo.png" alt="bitcoin" width="64" height="64">
+        <h3>BTC</h3>
+        <p>Precio actual: <strong class="bitcoin-price">$<%= bitcoin_price %> DLS</strong></p>
+        <p>Rendimiento mensual: <strong>5%</strong></p>
+        <label>Cantidad a invertir (USD):</label>
+        <input type="number" id="bitcoin-amount" class="d-block form-control text-center">
+        <label>Ganancia total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="bitcoin-yield" disabled>0</output>
+        <label>Balance total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="btc-total-yield" disabled>0</output>
+        <label>Balance total anual (BTC)</label>
+        <output type="number" class="d-block form-control" id="btc-total" disabled>0</output>
+        <button type="button" class="btn btn-outline-primary my-3" id="calculate-btc-yields">Calcular rendimientos</button>
+    </div>
+
+    <div>
+        <img src="https://64.media.tumblr.com/18a5246a4287ee4db0cd134d69954eb0/tumblr_inline_o4wvui8rKt1r2w261_400.png" alt="ethereum" width="64" height="64">
+        <h3>ETH</h3>
+        <p>Precio actual: <strong class="ethereum-price">$<%= ethereum_price %>DLS</strong></p>
+        <p>Rendimiento mensual: <strong>4.2%</strong></p>
+        <label>Cantidad a invertir (USD):</label>
+        <input type="number" id="ethereum-amount" class="d-block form-control text-center">
+        <label>Ganancia total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="ethereum-yield" disabled>0</output>
+        <label>Balance total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="eth-total-yield" disabled>0</output>
+        <label>Balance total anual (ETH):</label>
+        <output type="number" class="d-block form-control" id="eth-total" disabled>0</output>
+        <button type="button" class="btn btn-outline-primary my-3" id="calculate-eth-yields">Calcular rendimientos</button>
+    </div>
+
+    <div>
+        <img src="https://www.coinlore.com/img/cardano.png" alt="cardano" width="64" height="64">
+        <h3>ADA</h3>
+        <p>Precio actual: <strong class="cardano-price">$<%= cardano_price %>DLS</strong></p>
+        <p>Rendimiento mensual: <strong>1%</strong></p>
+        <label>Cantidad a invertir (USD):</label>
+        <input type="number" id="cardano-amount" class="d-block form-control text-center">
+        <label>Ganancia total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="cardano-yield" disabled>0</output>
+        <label>Balance total anual (USD):</label>
+        <output type="number" class="d-block form-control" id="ada-total-yield" disabled>0</output>
+        <label>Balance total anual (ADA):</label>
+        <output type="number" class="d-block form-control" id="ada-total" disabled>0</output>
+        <button type="button" class="btn btn-outline-primary my-3" id="calculate-ada-yields">Calcular rendimientos</button>
+    </div>
+</form>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+        <th>#</th>
+        <th>ASSET</th>
+        <th>PRICE(USD)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Bitcoin - BTC</td>
+            <td id="bitcoin-price"><%= bitcoin_price %></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Ethereum - ETH</td>
+            <td id="ethereum-price"><%= ethereum_price %></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Cardano - ADA</td>
+            <td id="cardano-price"><%= cardano_price %></td>
+        </tr>
+    </tbody>
+</table>
+
+<!--
+
+Método 'render' renderiza formulario oculto para hacer uso del método
+POST y mandar los datos de la tabla a un archivo .csv, .xls o .json.
+
+-->
+
+<%= render 'form_to_export' %>
